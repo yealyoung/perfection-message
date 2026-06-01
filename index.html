@@ -8,7 +8,7 @@
     :root {
       --bg1: #f7f1ea;
       --bg2: #f1e9df;
-      --card: rgba(255, 252, 248, 0.8);
+      --card: rgba(255, 252, 248, 0.82);
       --brown: #5a4335;
       --brown-soft: #7b6759;
       --brown-light: #9a887b;
@@ -17,9 +17,7 @@
       --button2: #5a4335;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
@@ -42,12 +40,12 @@
         linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
     }
 
-    /* 종이 결 */
+    /* 종이 질감 */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.15;
+      opacity: 0.14;
       pointer-events: none;
       background-image:
         repeating-linear-gradient(
@@ -59,13 +57,13 @@
         );
     }
 
-    /* 창가 빛 */
+    /* 기본 창가 빛 */
     body::after {
       content: "";
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 0.52;
       background:
         linear-gradient(
           120deg,
@@ -97,11 +95,11 @@
     .card {
       width: 100%;
       max-width: 500px;
-      min-height: 680px;
+      min-height: 690px;
       padding: 42px 30px 34px;
       border-radius: 30px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
       text-align: center;
       background:
         linear-gradient(rgba(255,252,248,0.74), rgba(255,252,248,0.80));
@@ -112,6 +110,39 @@
         inset 0 1px 0 rgba(255,255,255,0.55);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    /* 타입별 배경 효과용 레이어 */
+    .theme-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .theme-layer.show {
+      opacity: 1;
+    }
+
+    .theme-layer::before,
+    .theme-layer::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .brand,
+    .title,
+    .subtitle,
+    .divider,
+    .fortune-stage,
+    .footer-line,
+    .footer {
+      position: relative;
+      z-index: 1;
     }
 
     .brand {
@@ -163,9 +194,7 @@
       transition: opacity 0.45s ease, transform 0.45s ease;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     .fade-out {
       opacity: 0;
@@ -229,7 +258,7 @@
       box-shadow: none;
     }
 
-    /* 쿠키 화면 */
+    /* 쿠키 */
     .cookie-wrap {
       display: flex;
       flex-direction: column;
@@ -320,21 +349,13 @@
     }
 
     @keyframes cookieLeftOpen {
-      0% {
-        transform: rotate(0deg) translateX(0);
-      }
-      100% {
-        transform: rotate(-30deg) translateX(-16px) translateY(-2px);
-      }
+      0% { transform: rotate(0deg) translateX(0); }
+      100% { transform: rotate(-30deg) translateX(-16px) translateY(-2px); }
     }
 
     @keyframes cookieRightOpen {
-      0% {
-        transform: rotate(0deg) translateX(0);
-      }
-      100% {
-        transform: rotate(30deg) translateX(16px) translateY(-2px);
-      }
+      0% { transform: rotate(0deg) translateX(0); }
+      100% { transform: rotate(30deg) translateX(16px) translateY(-2px); }
     }
 
     @keyframes paperRise {
@@ -348,13 +369,18 @@
       }
     }
 
-    /* 결과 화면 */
+    /* 결과 카드 */
     .fortune-card {
       border-radius: 24px;
       padding: 24px 22px 22px;
       background: rgba(255, 250, 245, 0.72);
       border: 1px solid rgba(255,255,255,0.6);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        0 8px 18px rgba(90, 67, 53, 0.04);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
     }
 
     .fortune-label {
@@ -396,10 +422,320 @@
       word-break: keep-all;
     }
 
+    /* ===== 타입별 카드 무드 ===== */
+
+    /* 1 작은 숨 타입 */
+    .theme-soft-breath::before {
+      inset: 18% 20% auto 20%;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255,255,255,0.55), rgba(255,255,255,0.0) 70%);
+    }
+    .theme-soft-breath::after {
+      inset: auto 12% 10% 12%;
+      height: 120px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.25), transparent 72%);
+    }
+    .card-soft-breath {
+      background: rgba(255, 251, 247, 0.78);
+    }
+
+    /* 2 햇살 타입 */
+    .theme-sunlight::before {
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,224,170,0.18) 0%, rgba(255,255,255,0) 46%);
+    }
+    .theme-sunlight::after {
+      left: -8%;
+      top: 8%;
+      width: 80%;
+      height: 70%;
+      background: linear-gradient(120deg, rgba(255,235,190,0.20), rgba(255,255,255,0));
+      transform: rotate(-8deg);
+    }
+    .card-sunlight {
+      background: linear-gradient(180deg, rgba(255,250,244,0.88), rgba(255,247,240,0.74));
+    }
+
+    /* 3 느린 호흡 타입 */
+    .theme-slow-breath::before {
+      inset: 10% 8% auto 8%;
+      height: 220px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.22), transparent 60%);
+    }
+    .theme-slow-breath::after {
+      inset: auto 18% 12% 18%;
+      height: 90px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.16), transparent 72%);
+    }
+    .card-slow-breath {
+      background: rgba(255,250,246,0.72);
+    }
+
+    /* 4 가벼운 하루 타입 */
+    .theme-light-day::before {
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.00) 50%);
+    }
+    .theme-light-day::after {
+      inset: auto 12% 6% 12%;
+      height: 160px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.26), transparent 70%);
+    }
+    .card-light-day {
+      background: linear-gradient(180deg, rgba(255,252,248,0.82), rgba(255,249,244,0.76));
+    }
+
+    /* 5 따뜻한 휴식 타입 */
+    .theme-warm-rest::before {
+      inset: auto 8% 0 8%;
+      height: 170px;
+      background: radial-gradient(ellipse at center, rgba(255,239,220,0.32), transparent 72%);
+    }
+    .theme-warm-rest::after {
+      left: 16%;
+      top: 16%;
+      width: 68%;
+      height: 50%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.12), transparent 70%);
+    }
+    .card-warm-rest {
+      background: linear-gradient(180deg, rgba(255,248,240,0.84), rgba(255,245,236,0.76));
+    }
+
+    /* 6 조용한 회복 타입 */
+    .theme-quiet-recovery::before {
+      inset: 20% 20% auto 20%;
+      height: 120px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.10), transparent 72%);
+    }
+    .theme-quiet-recovery::after {
+      display: none;
+    }
+    .card-quiet-recovery {
+      background: rgba(255,251,247,0.68);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.48);
+    }
+
+    /* 7 물 한 잔 타입 */
+    .theme-water-glass::before {
+      inset: 12% 12% auto 12%;
+      height: 170px;
+      background: radial-gradient(ellipse at center, rgba(235,245,242,0.45), transparent 72%);
+    }
+    .theme-water-glass::after {
+      left: 22%;
+      bottom: 20%;
+      width: 56%;
+      height: 36px;
+      background: radial-gradient(ellipse at center, rgba(220,240,238,0.32), transparent 72%);
+    }
+    .card-water-glass {
+      background: linear-gradient(180deg, rgba(250,252,250,0.82), rgba(246,250,249,0.74));
+    }
+
+    /* 8 덜 무거운 하루 타입 */
+    .theme-less-heavy::before {
+      inset: auto 8% 0 8%;
+      height: 180px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.24), transparent 74%);
+    }
+    .theme-less-heavy::after {
+      inset: 12% 18% auto 18%;
+      height: 120px;
+      background: radial-gradient(ellipse at center, rgba(255,245,236,0.16), transparent 70%);
+    }
+    .card-less-heavy {
+      background: linear-gradient(180deg, rgba(255,249,244,0.82), rgba(255,246,240,0.74));
+    }
+
+    /* 9 천천히 괜찮은 타입 */
+    .theme-slowly-ok::before {
+      left: 6%;
+      top: 10%;
+      width: 70%;
+      height: 60%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.00));
+    }
+    .theme-slowly-ok::after {
+      inset: auto 18% 10% 18%;
+      height: 100px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.16), transparent 72%);
+    }
+    .card-slowly-ok {
+      background: rgba(255,250,245,0.74);
+    }
+
+    /* 10 참지 않아도 되는 타입 */
+    .theme-no-endure::before {
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,250,245,0.18), rgba(255,246,240,0.02));
+    }
+    .theme-no-endure::after {
+      left: 15%;
+      top: 18%;
+      width: 70%;
+      height: 44%;
+      background: radial-gradient(ellipse at center, rgba(255,241,228,0.16), transparent 72%);
+    }
+    .card-no-endure {
+      background: linear-gradient(180deg, rgba(255,249,243,0.84), rgba(255,247,242,0.74));
+    }
+
+    /* 11 작은 쉼표 타입 */
+    .theme-small-comma::before {
+      left: 48%;
+      top: 16%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.48);
+      box-shadow: 0 22px 0 8px rgba(255,255,255,0.16);
+    }
+    .theme-small-comma::after {
+      inset: auto 18% 12% 18%;
+      height: 90px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.12), transparent 72%);
+    }
+    .card-small-comma {
+      background: rgba(255,251,247,0.76);
+    }
+
+    /* 12 몸 먼저 타입 */
+    .theme-body-first::before {
+      inset: 8% 10% auto 10%;
+      height: 160px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.22), transparent 72%);
+    }
+    .theme-body-first::after {
+      display: none;
+    }
+    .card-body-first {
+      background: linear-gradient(180deg, rgba(255,252,248,0.84), rgba(255,248,243,0.76));
+    }
+
+    /* 13 오늘도 충분한 타입 */
+    .theme-enough-today::before {
+      inset: 12% 18% auto 18%;
+      height: 170px;
+      background: radial-gradient(ellipse at center, rgba(255,250,240,0.28), transparent 72%);
+    }
+    .theme-enough-today::after {
+      inset: auto 18% 10% 18%;
+      height: 90px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.18), transparent 72%);
+    }
+    .card-enough-today {
+      background: rgba(255,249,243,0.82);
+    }
+
+    /* 14 느긋한 회복 타입 */
+    .theme-gentle-recovery::before {
+      left: 8%;
+      top: 12%;
+      width: 78%;
+      height: 55%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.16), transparent 65%);
+    }
+    .theme-gentle-recovery::after {
+      inset: auto 16% 10% 16%;
+      height: 100px;
+      background: radial-gradient(ellipse at center, rgba(255,249,241,0.14), transparent 72%);
+    }
+    .card-gentle-recovery {
+      background: rgba(255,249,244,0.76);
+    }
+
+    /* 15 부드러운 숨 타입 */
+    .theme-soft-air::before {
+      inset: 10% 15% auto 15%;
+      height: 180px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.30), transparent 72%);
+    }
+    .theme-soft-air::after {
+      inset: auto 22% 8% 22%;
+      height: 80px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.22), transparent 72%);
+    }
+    .card-soft-air {
+      background: linear-gradient(180deg, rgba(255,252,248,0.86), rgba(255,250,246,0.76));
+    }
+
+    /* 16 가만한 위로 타입 */
+    .theme-still-comfort::before {
+      inset: 18% 18% auto 18%;
+      height: 140px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.12), transparent 72%);
+    }
+    .theme-still-comfort::after {
+      display: none;
+    }
+    .card-still-comfort {
+      background: rgba(255,251,247,0.70);
+    }
+
+    /* 17 한 템포 쉬어가기 타입 */
+    .theme-one-tempo::before {
+      inset: auto 10% 0 10%;
+      height: 170px;
+      background: radial-gradient(ellipse at center, rgba(255,243,228,0.26), transparent 72%);
+    }
+    .theme-one-tempo::after {
+      left: 18%;
+      top: 16%;
+      width: 60%;
+      height: 40%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.10), transparent 72%);
+    }
+    .card-one-tempo {
+      background: linear-gradient(180deg, rgba(255,248,241,0.84), rgba(255,245,238,0.76));
+    }
+
+    /* 18 작은 편안함 타입 */
+    .theme-small-comfort::before {
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.00) 46%);
+    }
+    .theme-small-comfort::after {
+      right: 12%;
+      top: 14%;
+      width: 36%;
+      height: 36%;
+      background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 72%);
+    }
+    .card-small-comfort {
+      background: rgba(255,249,244,0.78);
+    }
+
+    /* 19 덜 애써도 되는 타입 */
+    .theme-less-effort::before {
+      inset: 12% 14% auto 14%;
+      height: 160px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.18), transparent 72%);
+    }
+    .theme-less-effort::after {
+      display: none;
+    }
+    .card-less-effort {
+      background: rgba(255,250,246,0.74);
+    }
+
+    /* 20 온전한 오늘 타입 */
+    .theme-whole-today::before {
+      inset: 8% 10% auto 10%;
+      height: 170px;
+      background: radial-gradient(ellipse at center, rgba(255,247,236,0.24), transparent 72%);
+    }
+    .theme-whole-today::after {
+      inset: auto 14% 8% 14%;
+      height: 100px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.20), transparent 72%);
+    }
+    .card-whole-today {
+      background: linear-gradient(180deg, rgba(255,249,244,0.84), rgba(255,246,240,0.76));
+    }
+
     @media (max-width: 480px) {
-      body {
-        padding: 18px;
-      }
+      body { padding: 18px; }
 
       .card {
         min-height: 640px;
@@ -451,9 +787,7 @@
         font-size: 18px;
       }
 
-      button {
-        width: 100%;
-      }
+      button { width: 100%; }
     }
   </style>
 </head>
@@ -461,6 +795,8 @@
   <div class="page-glow"></div>
 
   <div class="card">
+    <div class="theme-layer" id="themeLayer"></div>
+
     <div class="brand">Perfection</div>
     <h1 class="title">잠깐, 숨 고르기</h1>
     <p class="subtitle">오늘의 메시지를 열어보세요</p>
@@ -494,7 +830,7 @@
 
       <!-- 결과 화면 -->
       <div class="screen hidden" id="resultScreen">
-        <div class="fortune-card">
+        <div class="fortune-card" id="fortuneCard">
           <div class="fortune-label">오늘의 회복 타입</div>
           <div class="fortune-type" id="fortuneType"></div>
           <div class="fortune-message" id="fortuneMessage"></div>
@@ -517,89 +853,126 @@
     const fortunes = [
       {
         type: "작은 숨 타입",
-        message: "오늘은 조금 덜 애써도 괜찮아요."
+        message: "오늘은 조금 덜 애써도 괜찮아요.",
+        theme: "soft-breath"
       },
       {
         type: "햇살 타입",
-        message: "작은 불편 하나만 덜어도 하루가 달라져요."
+        message: "작은 불편 하나만 덜어도 하루가 달라져요.",
+        theme: "sunlight"
       },
       {
         type: "느린 호흡 타입",
-        message: "천천히 가도 괜찮아요."
+        message: "천천히 가도 괜찮아요.",
+        theme: "slow-breath"
       },
       {
         type: "가벼운 하루 타입",
-        message: "조금 더 가볍게 숨 쉬는 하루가 되길 바랍니다."
+        message: "조금 더 가볍게 숨 쉬는 하루가 되길 바랍니다.",
+        theme: "light-day"
       },
       {
         type: "따뜻한 휴식 타입",
-        message: "작은 휴식 하나도 충분히 의미 있어요."
+        message: "작은 휴식 하나도 충분히 의미 있어요.",
+        theme: "warm-rest"
       },
       {
         type: "조용한 회복 타입",
-        message: "지금의 하루가 조금 덜 복잡하길 바랍니다."
+        message: "지금의 하루가 조금 덜 복잡하길 바랍니다.",
+        theme: "quiet-recovery"
       },
       {
         type: "물 한 잔 타입",
-        message: "물 한 잔 챙기는 것도 충분한 돌봄이에요."
+        message: "물 한 잔 챙기는 것도 충분한 돌봄이에요.",
+        theme: "water-glass"
       },
       {
         type: "덜 무거운 하루 타입",
-        message: "조금 덜 무겁고,\n조금 더 편안한 하루가 되길 바랍니다."
+        message: "조금 덜 무겁고,\n조금 더 편안한 하루가 되길 바랍니다.",
+        theme: "less-heavy"
       },
       {
         type: "천천히 괜찮은 타입",
-        message: "다 하지 못해도 괜찮아요."
+        message: "다 하지 못해도 괜찮아요.",
+        theme: "slowly-ok"
       },
       {
         type: "참지 않아도 되는 타입",
-        message: "불편함을 참지 않아도 괜찮아요."
+        message: "불편함을 참지 않아도 괜찮아요.",
+        theme: "no-endure"
       },
       {
         type: "작은 쉼표 타입",
-        message: "오늘은 한 템포 쉬어가도 괜찮아요."
+        message: "오늘은 한 템포 쉬어가도 괜찮아요.",
+        theme: "small-comma"
       },
       {
         type: "몸 먼저 타입",
-        message: "오늘도 몸이 먼저인 하루를 보내요."
+        message: "오늘도 몸이 먼저인 하루를 보내요.",
+        theme: "body-first"
       },
       {
         type: "오늘도 충분한 타입",
-        message: "오늘도 충분히 잘하고 있어요."
+        message: "오늘도 충분히 잘하고 있어요.",
+        theme: "enough-today"
       },
       {
         type: "느긋한 회복 타입",
-        message: "오늘의 나를 너무 몰아붙이지 않기로 해요."
+        message: "오늘의 나를 너무 몰아붙이지 않기로 해요.",
+        theme: "gentle-recovery"
       },
       {
         type: "부드러운 숨 타입",
-        message: "조금 더 부드럽게 숨 쉬는 하루가 되길 바랍니다."
+        message: "조금 더 부드럽게 숨 쉬는 하루가 되길 바랍니다.",
+        theme: "soft-air"
       },
       {
         type: "가만한 위로 타입",
-        message: "지금 이 순간에도 이미 충분해요."
+        message: "지금 이 순간에도 이미 충분해요.",
+        theme: "still-comfort"
       },
       {
         type: "한 템포 쉬어가기 타입",
-        message: "몸이 편해야 마음도 조금 덜 지쳐요."
+        message: "몸이 편해야 마음도 조금 덜 지쳐요.",
+        theme: "one-tempo"
       },
       {
         type: "작은 편안함 타입",
-        message: "참는 것보다 편안한 쪽을 먼저 골라요."
+        message: "참는 것보다 편안한 쪽을 먼저 골라요.",
+        theme: "small-comfort"
       },
       {
         type: "덜 애써도 되는 타입",
-        message: "오늘은 조금 덜 애써도 괜찮아요."
+        message: "오늘은 조금 덜 애써도 괜찮아요.",
+        theme: "less-effort"
       },
       {
         type: "온전한 오늘 타입",
-        message: "HAROO 브라가 오늘을\n조금 더 가볍게 만들어주길 바랍니다."
+        message: "HAROO 브라가 오늘을\n조금 더 가볍게 만들어주길 바랍니다.",
+        theme: "whole-today"
       }
     ];
 
     function randomFortune() {
       const index = Math.floor(Math.random() * fortunes.length);
       return fortunes[index];
+    }
+
+    function applyTheme(themeName) {
+      const themeLayer = document.getElementById("themeLayer");
+      const fortuneCard = document.getElementById("fortuneCard");
+
+      themeLayer.className = "theme-layer show";
+      fortuneCard.className = "fortune-card";
+
+      themeLayer.classList.add(`theme-${themeName}`);
+      fortuneCard.classList.add(`card-${themeName}`);
+    }
+
+    function setFortuneContent(fortune) {
+      document.getElementById("fortuneType").textContent = fortune.type;
+      document.getElementById("fortuneMessage").innerHTML = fortune.message.replace(/\n/g, "<br>");
+      applyTheme(fortune.theme);
     }
 
     function openFortune() {
@@ -623,8 +996,7 @@
 
         setTimeout(() => {
           const today = randomFortune();
-          document.getElementById("fortuneType").textContent = today.type;
-          document.getElementById("fortuneMessage").innerHTML = today.message.replace(/\n/g, "<br>");
+          setFortuneContent(today);
 
           cookieScreen.classList.add("fade-out");
 
@@ -651,8 +1023,8 @@
 
       setTimeout(() => {
         const today = randomFortune();
-        document.getElementById("fortuneType").textContent = today.type;
-        document.getElementById("fortuneMessage").innerHTML = today.message.replace(/\n/g, "<br>");
+        setFortuneContent(today);
+
         result.classList.remove("fade-out");
         result.classList.add("fade-in");
 
