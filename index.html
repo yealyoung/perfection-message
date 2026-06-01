@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>잠깐, 숨 고르기</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background: #f6f1ea;
+      color: #5a4335;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255, 252, 248, 0.92);
+      border-radius: 28px;
+      padding: 40px 28px;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(90, 67, 53, 0.08);
+    }
+
+    .brand {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      margin-bottom: 28px;
+      opacity: 0.85;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #7a6558;
+      margin-bottom: 36px;
+    }
+
+    .message {
+      font-size: 24px;
+      line-height: 1.7;
+      font-weight: 500;
+      margin: 32px 0 40px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      background: #5a4335;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-bottom: 28px;
+    }
+
+    button:hover {
+      opacity: 0.92;
+    }
+
+    .footer {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #8a7668;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">Perfection</div>
+    <div class="title">잠깐, 숨 고르기</div>
+    <div class="subtitle">
+      오늘의 작은 메시지를 전해요
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <button onclick="showRandomMessage()">다른 문장 보기</button>
+
+    <div class="footer">
+      HAROO 브라와 함께 보내는 작은 메시지
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "오늘도 몸이 먼저인 하루를 보내요.",
+      "작은 불편 하나만 덜어도 하루가 달라져요.",
+      "다 하지 못해도 괜찮아요.",
+      "지금의 하루가 조금 덜 복잡하길 바랍니다.",
+      "오늘도 충분히 잘하고 있어요.",
+      "조금 덜 완벽해도 괜찮은 하루예요.",
+      "물 한 잔 챙기는 것도 충분한 돌봄이에요.",
+      "불편함을 참지 않아도 괜찮아요.",
+      "조금 더 가볍게 숨 쉬는 하루가 되길 바랍니다.",
+      "오늘의 컨디션을 먼저 살펴봐요.",
+      "내 몸의 신호를 먼저 알아봐 주세요.",
+      "오늘은 조금 덜 애써도 괜찮아요.",
+      "작은 휴식 하나도 충분히 의미 있어요.",
+      "지금 이 순간에도 이미 충분해요.",
+      "몸이 편해야 마음도 조금 덜 지쳐요.",
+      "천천히 가도 괜찮아요.",
+      "오늘의 나를 너무 몰아붙이지 않기로 해요.",
+      "참는 것보다 편안한 쪽을 먼저 골라요.",
+      "조금 덜 무겁고, 조금 더 편안한 하루가 되길 바랍니다.",
+      "HAROO 브라가 오늘을 조금 더 가볍게 만들어주길 바랍니다."
+    ];
+
+    function showRandomMessage() {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      document.getElementById("message").textContent = messages[randomIndex];
+    }
+
+    showRandomMessage();
+  </script>
+</body>
+</html>
