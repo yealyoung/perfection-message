@@ -314,6 +314,111 @@
         width: 100%;
       }
     }
+
+  /* 쿠키 오프닝 화면 */
+.cookie-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
+
+.cookie {
+  position: relative;
+  width: 160px;
+  height: 120px;
+  margin-bottom: 18px;
+}
+
+.cookie-half {
+  position: absolute;
+  top: 10px;
+  width: 78px;
+  height: 100px;
+  background: linear-gradient(180deg, #e7d2bb 0%, #d7b190 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.35),
+    0 8px 18px rgba(90, 67, 53, 0.14);
+}
+
+.cookie-left {
+  left: 0;
+  border-radius: 90px 10px 90px 90px;
+  transform-origin: 90% 60%;
+}
+
+.cookie-right {
+  right: 0;
+  border-radius: 10px 90px 90px 90px;
+  transform-origin: 10% 60%;
+}
+
+.fortune-paper {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 72px;
+  height: 18px;
+  background: #fffaf5;
+  border-radius: 4px;
+  border: 1px solid rgba(120,95,75,0.10);
+  transform: translate(-50%, -50%) translateY(8px);
+  opacity: 0;
+  box-shadow: 0 6px 14px rgba(90,67,53,0.08);
+}
+
+.cookie-text {
+  font-size: 14px;
+  color: var(--brown-soft);
+  line-height: 1.8;
+}
+
+/* 열리는 애니메이션 */
+.cookie.open .cookie-left {
+  animation: cookieLeftOpen 0.65s ease forwards;
+}
+
+.cookie.open .cookie-right {
+  animation: cookieRightOpen 0.65s ease forwards;
+}
+
+.cookie.open .fortune-paper {
+  animation: paperRise 0.55s ease 0.32s forwards;
+}
+
+@keyframes cookieLeftOpen {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+  100% {
+    transform: rotate(-28deg) translateX(-8px) translateY(-2px);
+  }
+}
+
+@keyframes cookieRightOpen {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+  100% {
+    transform: rotate(28deg) translateX(8px) translateY(-2px);
+  }
+}
+
+@keyframes paperRise {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(12px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(-18px) scale(1);
+  }
+}  
+
+
+
+    
   </style>
 </head>
 <body>
@@ -338,19 +443,44 @@
         </div>
       </div>
 
-      <!-- 결과 화면 -->
-      <div class="screen hidden" id="resultScreen">
-        <div class="fortune-card">
-          <div class="fortune-label">오늘의 회복 타입</div>
-          <div class="fortune-type" id="fortuneType"></div>
-          <div class="fortune-message" id="fortuneMessage"></div>
-        </div>
+<div class="fortune-stage">
+  <!-- 첫 화면 -->
+  <div class="screen" id="introScreen">
+    <p class="fortune-intro">
+      오늘의 작은 메시지가 도착했어요.<br>
+      지금의 나를 위한 한 문장을 열어보세요.
+    </p>
 
-        <div class="button-wrap">
-          <button class="sub-button" onclick="showAnotherFortune()">다른 메시지 보기</button>
-        </div>
-      </div>
+    <div class="button-wrap">
+      <button onclick="openFortune()">포춘 열기</button>
     </div>
+  </div>
+
+  <!-- 쿠키 애니메이션 -->
+  <div class="screen hidden" id="cookieScreen">
+    <div class="cookie-wrap">
+      <div class="cookie" id="fortuneCookie">
+        <div class="cookie-half cookie-left"></div>
+        <div class="cookie-half cookie-right"></div>
+        <div class="fortune-paper" id="fortunePaper"></div>
+      </div>
+      <div class="cookie-text">또각, 오늘의 포춘을 여는 중...</div>
+    </div>
+  </div>
+
+  <!-- 결과 화면 -->
+  <div class="screen hidden" id="resultScreen">
+    <div class="fortune-card">
+      <div class="fortune-label">오늘의 회복</div>
+      <div class="fortune-type" id="fortuneType"></div>
+      <div class="fortune-message" id="fortuneMessage"></div>
+    </div>
+
+    <div class="button-wrap">
+      <button class="sub-button" onclick="showAnotherFortune()">다른 메시지 보기</button>
+    </div>
+  </div>
+</div>
 
     <div class="footer-line"></div>
     <div class="footer">
@@ -447,20 +577,38 @@
       const index = Math.floor(Math.random() * fortunes.length);
       return fortunes[index];
     }
+    
+function openFortune() {
+  const intro = document.getElementById("introScreen");
+  const cookieScreen = document.getElementById("cookieScreen");
+  const result = document.getElementById("resultScreen");
+  const cookie = document.getElementById("fortuneCookie");
 
-    function openFortune() {
-      const intro = document.getElementById("introScreen");
-      const result = document.getElementById("resultScreen");
+  intro.classList.add("fade-out");
 
-      intro.classList.add("fade-out");
+  setTimeout(() => {
+    intro.classList.add("hidden");
+    intro.classList.remove("fade-out");
+
+    cookieScreen.classList.remove("hidden");
+    cookieScreen.classList.add("fade-in");
+
+    setTimeout(() => {
+      cookie.classList.add("open");
+    }, 120);
+
+    setTimeout(() => {
+      const today = randomFortune();
+      document.getElementById("fortuneType").textContent = today.type;
+      document.getElementById("fortuneMessage").innerHTML = today.message.replace(/\n/g, "<br>");
+
+      cookieScreen.classList.add("fade-out");
 
       setTimeout(() => {
-        intro.classList.add("hidden");
-        intro.classList.remove("fade-out");
-
-        const today = randomFortune();
-        document.getElementById("fortuneType").textContent = today.type;
-        document.getElementById("fortuneMessage").innerHTML = today.message.replace(/\n/g, "<br>");
+        cookieScreen.classList.add("hidden");
+        cookieScreen.classList.remove("fade-in");
+        cookieScreen.classList.remove("fade-out");
+        cookie.classList.remove("open");
 
         result.classList.remove("hidden");
         result.classList.add("fade-in");
@@ -468,9 +616,10 @@
         setTimeout(() => {
           result.classList.remove("fade-in");
         }, 450);
-      }, 220);
-    }
-
+      }, 350);
+    }, 1450);
+  }, 220);
+}
     function showAnotherFortune() {
       const result = document.getElementById("resultScreen");
       result.classList.add("fade-out");
