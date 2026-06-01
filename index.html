@@ -38,9 +38,9 @@
       padding: 24px;
       position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 12% 8%, rgba(255,255,255,0.78), transparent 22%),
-        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    background:
+  radial-gradient(circle at 15% 10%, rgba(255,255,255,0.95), transparent 24%),
+  linear-gradient(180deg, #f7f1ea 0%, #f2ebe2 100%);
     }
 
     /* 아주 옅은 종이 결 */
@@ -61,40 +61,39 @@
     }
 
     /* 창가 빛 그림자 느낌 */
-    body::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.38;
-      background:
-        linear-gradient(
-          120deg,
-          rgba(255,255,255,0.26) 0%,
-          rgba(255,255,255,0.02) 18%,
-          rgba(255,255,255,0.18) 36%,
-          rgba(255,255,255,0.02) 54%,
-          rgba(255,255,255,0.10) 72%,
-          rgba(255,255,255,0.00) 100%
-        );
-      transform: translateX(-6%);
-    }
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.75;
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.06) 18%,
+      rgba(255,255,255,0.38) 36%,
+      rgba(255,255,255,0.05) 52%,
+      rgba(255,255,255,0.22) 68%,
+      rgba(255,255,255,0.00) 100%
+    );
+  transform: translateX(-3%);
+}
 
-    .page-glow {
-      position: absolute;
-      inset: auto 0 -80px 0;
-      height: 220px;
-      pointer-events: none;
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(255,255,255,0.55) 0%,
-          rgba(255,255,255,0.18) 45%,
-          rgba(255,255,255,0.00) 76%
-        );
-      filter: blur(8px);
-    }
-
+.page-glow {
+  position: absolute;
+  inset: auto 0 -40px 0;
+  height: 260px;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255,255,255,0.78) 0%,
+      rgba(255,255,255,0.30) 42%,
+      rgba(255,255,255,0.00) 76%
+    );
+  filter: blur(10px);
+}
     .card {
       width: 100%;
       max-width: 500px;
@@ -104,7 +103,7 @@
       z-index: 1;
       text-align: center;
       background:
-        linear-gradient(rgba(255,252,248,0.86), rgba(255,252,248,0.86));
+  linear-gradient(rgba(255,252,248,0.72), rgba(255,252,248,0.78));
       border: 1px solid rgba(255,255,255,0.54);
       box-shadow:
         0 22px 48px rgba(90, 67, 53, 0.08),
