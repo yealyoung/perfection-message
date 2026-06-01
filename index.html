@@ -5,214 +5,328 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>잠깐, 숨 고르기</title>
   <style>
-  body {
-    margin: 0;
-    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    background:
-      radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 35%),
-      linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 25%),
-      linear-gradient(to bottom, #f7f2eb 0%, #f3ede5 100%);
-    color: #5a4335;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 24px;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-  }
+    :root {
+      --bg-1: #f7f1ea;
+      --bg-2: #f2ebe2;
+      --card: rgba(255, 252, 248, 0.82);
+      --text-main: #5a4335;
+      --text-sub: #7b6759;
+      --text-soft: #9a887b;
+      --line: rgba(120, 95, 75, 0.10);
+      --button-1: #6c5445;
+      --button-2: #5a4335;
+      --white-soft: rgba(255,255,255,0.72);
+    }
 
-  /* 아주 옅은 빛 그림자 */
-  body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(115deg,
-        rgba(255,255,255,0.20) 0%,
-        rgba(255,255,255,0.00) 18%,
-        rgba(255,255,255,0.18) 36%,
-        rgba(255,255,255,0.00) 54%);
-    opacity: 0.5;
-    pointer-events: none;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  /* 하단에 아주 옅은 빛/공기감 */
-  body::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -40px;
-    height: 180px;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(255,255,255,0.45) 0%,
-      rgba(255,255,255,0.12) 45%,
-      rgba(255,255,255,0) 75%
-    );
-    pointer-events: none;
-  }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
 
-  .card {
-    width: 100%;
-    max-width: 480px;
-    background:
-      linear-gradient(rgba(255,252,248,0.94), rgba(255,252,248,0.94)),
-      repeating-linear-gradient(
-        0deg,
-        rgba(120, 95, 75, 0.015) 0px,
-        rgba(120, 95, 75, 0.015) 1px,
-        transparent 1px,
-        transparent 4px
-      );
-    border-radius: 28px;
-    padding: 40px 28px;
-    box-sizing: border-box;
-    text-align: center;
-    box-shadow:
-      0 18px 40px rgba(90, 67, 53, 0.08),
-      0 2px 10px rgba(90, 67, 53, 0.04);
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(255,255,255,0.45);
-    backdrop-filter: blur(2px);
-  }
+    body {
+      font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255,255,255,0.78), transparent 22%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    }
 
-  .brand {
-    font-size: 14px;
-    letter-spacing: 0.18em;
-    margin-bottom: 28px;
-    opacity: 0.82;
-  }
+    /* 아주 옅은 종이 결 */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.22;
+      pointer-events: none;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(120,95,75,0.018) 0px,
+          rgba(120,95,75,0.018) 1px,
+          transparent 1px,
+          transparent 5px
+        );
+    }
 
-  .title {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 14px;
-    letter-spacing: -0.01em;
-  }
+    /* 창가 빛 그림자 느낌 */
+    body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.38;
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255,255,255,0.26) 0%,
+          rgba(255,255,255,0.02) 18%,
+          rgba(255,255,255,0.18) 36%,
+          rgba(255,255,255,0.02) 54%,
+          rgba(255,255,255,0.10) 72%,
+          rgba(255,255,255,0.00) 100%
+        );
+      transform: translateX(-6%);
+    }
 
-  .subtitle {
-    font-size: 15px;
-    line-height: 1.8;
-    color: #7a6558;
-    margin-bottom: 34px;
-  }
+    .page-glow {
+      position: absolute;
+      inset: auto 0 -80px 0;
+      height: 220px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(255,255,255,0.55) 0%,
+          rgba(255,255,255,0.18) 45%,
+          rgba(255,255,255,0.00) 76%
+        );
+      filter: blur(8px);
+    }
 
-  .message {
-    font-size: 24px;
-    line-height: 1.8;
-    font-weight: 500;
-    margin: 30px 0 36px;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    opacity: 1;
-    transform: translateY(0);
-  }
+    .card {
+      width: 100%;
+      max-width: 500px;
+      padding: 42px 30px 34px;
+      border-radius: 30px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      background:
+        linear-gradient(rgba(255,252,248,0.86), rgba(255,252,248,0.86));
+      border: 1px solid rgba(255,255,255,0.54);
+      box-shadow:
+        0 22px 48px rgba(90, 67, 53, 0.08),
+        0 8px 18px rgba(90, 67, 53, 0.05),
+        inset 0 1px 0 rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
 
-  .message.fade-out {
-    opacity: 0;
-    transform: translateY(6px);
-  }
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      color: var(--text-sub);
+      margin-bottom: 26px;
+    }
 
-  .message.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    .title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 14px;
+      color: var(--text-main);
+    }
 
-  button {
-    background: linear-gradient(to bottom, #6a5244, #5a4335);
-    color: white;
-    border: none;
-    border-radius: 999px;
-    padding: 14px 22px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-bottom: 28px;
-    box-shadow: 0 8px 18px rgba(90, 67, 53, 0.16);
-    transition: all 0.25s ease;
-  }
+    .subtitle {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text-sub);
+      margin: 0 0 28px;
+    }
 
-  button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 22px rgba(90, 67, 53, 0.18);
-    opacity: 0.98;
-  }
+    .divider {
+      width: 34px;
+      height: 1px;
+      background: rgba(120,95,75,0.24);
+      margin: 0 auto 30px;
+    }
 
-  button:active {
-    transform: translateY(0);
-  }
+    .message-wrap {
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 34px;
+      padding: 0 4px;
+    }
 
-  .footer {
-    font-size: 13px;
-    line-height: 1.8;
-    color: #8a7668;
-  }
-</style>
+    .message {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      line-height: 1.8;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .message.fade-out {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .message.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .button-wrap {
+      margin-bottom: 26px;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-size: 15px;
+      line-height: 1;
+      color: #fff;
+      background: linear-gradient(180deg, var(--button-1) 0%, var(--button-2) 100%);
+      box-shadow:
+        0 10px 22px rgba(90, 67, 53, 0.16),
+        inset 0 1px 0 rgba(255,255,255,0.16);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 14px 26px rgba(90, 67, 53, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .footer-line {
+      width: 100%;
+      max-width: 120px;
+      height: 1px;
+      background: var(--line);
+      margin: 0 auto 18px;
+    }
+
+    .footer {
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--text-soft);
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 18px;
+      }
+
+      .card {
+        padding: 34px 22px 28px;
+        border-radius: 26px;
+      }
+
+      .brand {
+        font-size: 13px;
+        margin-bottom: 22px;
+      }
+
+      .title {
+        font-size: 27px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+
+      .divider {
+        margin-bottom: 24px;
+      }
+
+      .message-wrap {
+        min-height: 150px;
+        margin-bottom: 28px;
+      }
+
+      .message {
+        font-size: 24px;
+        line-height: 1.75;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page-glow"></div>
+
   <div class="card">
     <div class="brand">Perfection</div>
-    <div class="title">잠깐, 숨 고르기</div>
-    <div class="subtitle">
-      오늘의 작은 메시지를 전해요
+    <h1 class="title">잠깐, 숨 고르기</h1>
+    <p class="subtitle">오늘의 작은 메시지를 전해요</p>
+    <div class="divider"></div>
+
+    <div class="message-wrap">
+      <div class="message" id="message"></div>
     </div>
 
-    <div class="message" id="message"></div>
+    <div class="button-wrap">
+      <button onclick="showRandomMessage()">다른 문장 보기</button>
+    </div>
 
-    <button onclick="showRandomMessage()">다른 문장 보기</button>
-
+    <div class="footer-line"></div>
     <div class="footer">
-      HAROO 브라와 함께 보내는 작은 메시지
+      HAROO 브라와 함께 보내는<br>
+      작은 위로 한 장
     </div>
   </div>
 
-<script>
-  const messages = [
-    "오늘도 몸이 먼저인 하루를 보내요.",
-    "작은 불편 하나만 덜어도 하루가 달라져요.",
-    "다 하지 못해도 괜찮아요.",
-    "지금의 하루가 조금 덜 복잡하길 바랍니다.",
-    "오늘도 충분히 잘하고 있어요.",
-    "조금 덜 완벽해도 괜찮은 하루예요.",
-    "물 한 잔 챙기는 것도 충분한 돌봄이에요.",
-    "불편함을 참지 않아도 괜찮아요.",
-    "조금 더 가볍게 숨 쉬는 하루가 되길 바랍니다.",
-    "오늘의 컨디션을 먼저 살펴봐요.",
-    "내 몸의 신호를 먼저 알아봐 주세요.",
-    "오늘은 조금 덜 애써도 괜찮아요.",
-    "작은 휴식 하나도 충분히 의미 있어요.",
-    "지금 이 순간에도 이미 충분해요.",
-    "몸이 편해야 마음도 조금 덜 지쳐요.",
-    "천천히 가도 괜찮아요.",
-    "오늘의 나를 너무 몰아붙이지 않기로 해요.",
-    "참는 것보다 편안한 쪽을 먼저 골라요.",
-    "조금 덜 무겁고, 조금 더 편안한 하루가 되길 바랍니다.",
-    "HAROO 브라가 오늘을 조금 더 가볍게 만들어주길 바랍니다."
-  ];
+  <script>
+    const messages = [
+      "오늘도 몸이 먼저인 하루를 보내요.",
+      "작은 불편 하나만 덜어도 하루가 달라져요.",
+      "지금의 하루가 조금 덜 복잡하길 바랍니다.",
+      "조금 더 가볍게 숨 쉬는 하루가 되길 바랍니다.",
+      "오늘도 충분히 잘하고 있어요.",
+      "조금 덜 무겁고,\n조금 더 편안한 하루가 되길 바랍니다.",
+      "다 하지 못해도 괜찮아요.",
+      "몸이 편해야 마음도 조금 덜 지쳐요.",
+      "오늘은 조금 덜 애써도 괜찮아요.",
+      "지금 이 순간에도 이미 충분해요.",
+      "참는 것보다 편안한 쪽을\n먼저 골라요.",
+      "내 몸의 신호를 먼저\n살펴봐 주세요.",
+      "작은 휴식 하나도 충분히\n의미 있어요.",
+      "천천히 가도 괜찮아요.",
+      "오늘의 나를 너무 몰아붙이지\n않기로 해요.",
+      "불편함을 참지 않아도 괜찮아요.",
+      "HAROO 브라가 오늘을\n조금 더 가볍게 만들어주길 바랍니다."
+    ];
 
-  function showRandomMessage() {
-    const messageEl = document.getElementById("message");
-    messageEl.classList.add("fade-out");
-
-    setTimeout(() => {
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      messageEl.textContent = messages[randomIndex];
-      messageEl.classList.remove("fade-out");
-      messageEl.classList.add("fade-in");
+    function showRandomMessage() {
+      const messageEl = document.getElementById("message");
+      messageEl.classList.add("fade-out");
 
       setTimeout(() => {
-        messageEl.classList.remove("fade-in");
-      }, 450);
-    }, 250);
-  }
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        messageEl.innerHTML = messages[randomIndex].replace(/\n/g, "<br>");
+        messageEl.classList.remove("fade-out");
+        messageEl.classList.add("fade-in");
 
-  showRandomMessage();
-</script>
+        setTimeout(() => {
+          messageEl.classList.remove("fade-in");
+        }, 500);
+      }, 220);
+    }
+
+    showRandomMessage();
+  </script>
 </body>
 </html>
