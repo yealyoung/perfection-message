@@ -6,15 +6,15 @@
   <title>잠깐, 숨 고르기</title>
   <style>
     :root {
-      --bg-1: #f7f1ea;
-      --bg-2: #f2ebe2;
-      --card: rgba(255, 252, 248, 0.82);
-      --text-main: #5a4335;
-      --text-sub: #7b6759;
-      --text-soft: #9a887b;
-      --line: rgba(120, 95, 75, 0.10);
-      --button-1: #6c5445;
-      --button-2: #5a4335;
+      --bg1: #f7f1ea;
+      --bg2: #f1e9df;
+      --card: rgba(255, 252, 248, 0.84);
+      --brown: #5a4335;
+      --brown-soft: #7b6759;
+      --brown-light: #9a887b;
+      --line: rgba(120, 95, 75, 0.14);
+      --button1: #6c5445;
+      --button2: #5a4335;
       --white-soft: rgba(255,255,255,0.72);
     }
 
@@ -30,7 +30,7 @@
 
     body {
       font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      color: var(--text-main);
+      color: var(--brown);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -38,62 +38,64 @@
       padding: 24px;
       position: relative;
       overflow: hidden;
-    background:
-  radial-gradient(circle at 15% 10%, rgba(255,255,255,0.95), transparent 24%),
-  linear-gradient(180deg, #f7f1ea 0%, #f2ebe2 100%);
+      background:
+        radial-gradient(circle at 14% 10%, rgba(255,255,255,0.94), transparent 24%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
     }
 
-    /* 아주 옅은 종이 결 */
+    /* 종이 질감 */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.22;
+      opacity: 0.18;
       pointer-events: none;
       background-image:
         repeating-linear-gradient(
           0deg,
-          rgba(120,95,75,0.018) 0px,
-          rgba(120,95,75,0.018) 1px,
+          rgba(120,95,75,0.02) 0px,
+          rgba(120,95,75,0.02) 1px,
           transparent 1px,
           transparent 5px
         );
     }
 
-    /* 창가 빛 그림자 느낌 */
-body::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.75;
-  background:
-    linear-gradient(
-      120deg,
-      rgba(255,255,255,0.55) 0%,
-      rgba(255,255,255,0.06) 18%,
-      rgba(255,255,255,0.38) 36%,
-      rgba(255,255,255,0.05) 52%,
-      rgba(255,255,255,0.22) 68%,
-      rgba(255,255,255,0.00) 100%
-    );
-  transform: translateX(-3%);
-}
+    /* 창가 빛 사선 */
+    body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.62;
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255,255,255,0.55) 0%,
+          rgba(255,255,255,0.06) 18%,
+          rgba(255,255,255,0.34) 36%,
+          rgba(255,255,255,0.05) 52%,
+          rgba(255,255,255,0.18) 68%,
+          rgba(255,255,255,0.00) 100%
+        );
+      transform: translateX(-3%);
+    }
 
-.page-glow {
-  position: absolute;
-  inset: auto 0 -40px 0;
-  height: 260px;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(255,255,255,0.78) 0%,
-      rgba(255,255,255,0.30) 42%,
-      rgba(255,255,255,0.00) 76%
-    );
-  filter: blur(10px);
-}
+    /* 아래쪽 공기감 */
+    .page-glow {
+      position: absolute;
+      inset: auto 0 -30px 0;
+      height: 240px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(255,255,255,0.75) 0%,
+          rgba(255,255,255,0.25) 42%,
+          rgba(255,255,255,0.00) 76%
+        );
+      filter: blur(10px);
+    }
+
     .card {
       width: 100%;
       max-width: 500px;
@@ -103,7 +105,7 @@ body::after {
       z-index: 1;
       text-align: center;
       background:
-  linear-gradient(rgba(255,252,248,0.72), rgba(255,252,248,0.78));
+        linear-gradient(rgba(255,252,248,0.74), rgba(255,252,248,0.80));
       border: 1px solid rgba(255,255,255,0.54);
       box-shadow:
         0 22px 48px rgba(90, 67, 53, 0.08),
@@ -117,66 +119,92 @@ body::after {
       font-family: Georgia, "Times New Roman", serif;
       font-size: 14px;
       letter-spacing: 0.22em;
-      color: var(--text-sub);
-      margin-bottom: 26px;
+      color: var(--brown-soft);
+      margin-bottom: 24px;
     }
 
     .title {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 30px;
+      font-size: 31px;
       font-weight: 400;
       letter-spacing: -0.01em;
-      margin: 0 0 14px;
-      color: var(--text-main);
+      margin: 0 0 12px;
+      color: var(--brown);
     }
 
     .subtitle {
       font-size: 15px;
       line-height: 1.85;
-      color: var(--text-sub);
-      margin: 0 0 28px;
+      color: var(--brown-soft);
+      margin: 0 0 26px;
     }
 
     .divider {
       width: 34px;
       height: 1px;
-      background: rgba(120,95,75,0.24);
-      margin: 0 auto 30px;
+      background: var(--line);
+      margin: 0 auto 28px;
     }
 
-    .message-wrap {
-      min-height: 170px;
+    .fortune-stage {
+      min-height: 240px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 0 34px;
-      padding: 0 4px;
+      margin-bottom: 28px;
+      position: relative;
     }
 
-    .message {
+    .screen {
+      width: 100%;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .fortune-intro {
+      color: var(--brown-soft);
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 30px;
+    }
+
+    .fortune-card {
+      border-radius: 24px;
+      padding: 24px 18px 22px;
+      background: rgba(255, 250, 245, 0.7);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55);
+    }
+
+    .fortune-label {
+      font-size: 13px;
+      line-height: 1.7;
+      letter-spacing: 0.06em;
+      color: var(--brown-light);
+      margin-bottom: 12px;
+    }
+
+    .fortune-type {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 27px;
-      line-height: 1.8;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      color: var(--text-main);
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      font-size: 28px;
+      line-height: 1.5;
+      color: var(--brown);
+      margin-bottom: 18px;
     }
 
-    .message.fade-out {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .message.fade-in {
-      opacity: 1;
-      transform: translateY(0);
+    .fortune-message {
+      font-size: 20px;
+      line-height: 1.9;
+      color: var(--brown);
+      white-space: pre-line;
     }
 
     .button-wrap {
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     button {
@@ -188,7 +216,7 @@ body::after {
       font-size: 15px;
       line-height: 1;
       color: #fff;
-      background: linear-gradient(180deg, var(--button-1) 0%, var(--button-2) 100%);
+      background: linear-gradient(180deg, var(--button1) 0%, var(--button2) 100%);
       box-shadow:
         0 10px 22px rgba(90, 67, 53, 0.16),
         inset 0 1px 0 rgba(255,255,255,0.16);
@@ -206,9 +234,21 @@ body::after {
       transform: translateY(0);
     }
 
+    .sub-button {
+      margin-top: 18px;
+      background: transparent;
+      color: var(--brown-soft);
+      box-shadow: none;
+      border: 1px solid rgba(120,95,75,0.12);
+    }
+
+    .sub-button:hover {
+      background: rgba(255,255,255,0.45);
+      box-shadow: none;
+    }
+
     .footer-line {
-      width: 100%;
-      max-width: 120px;
+      width: 110px;
       height: 1px;
       background: var(--line);
       margin: 0 auto 18px;
@@ -217,7 +257,17 @@ body::after {
     .footer {
       font-size: 13px;
       line-height: 1.85;
-      color: var(--text-soft);
+      color: var(--brown-light);
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @media (max-width: 480px) {
@@ -236,26 +286,28 @@ body::after {
       }
 
       .title {
-        font-size: 27px;
+        font-size: 28px;
       }
 
       .subtitle {
         font-size: 14px;
-        margin-bottom: 24px;
+        margin-bottom: 22px;
       }
 
       .divider {
-        margin-bottom: 24px;
+        margin-bottom: 22px;
       }
 
-      .message-wrap {
-        min-height: 150px;
-        margin-bottom: 28px;
+      .fortune-stage {
+        min-height: 220px;
       }
 
-      .message {
-        font-size: 24px;
-        line-height: 1.75;
+      .fortune-type {
+        font-size: 25px;
+      }
+
+      .fortune-message {
+        font-size: 18px;
       }
 
       button {
@@ -270,15 +322,34 @@ body::after {
   <div class="card">
     <div class="brand">Perfection</div>
     <h1 class="title">잠깐, 숨 고르기</h1>
-    <p class="subtitle">오늘의 작은 메시지를 전해요</p>
+    <p class="subtitle">오늘의 메시지를 열어보세요</p>
     <div class="divider"></div>
 
-    <div class="message-wrap">
-      <div class="message" id="message"></div>
-    </div>
+    <div class="fortune-stage">
+      <!-- 첫 화면 -->
+      <div class="screen" id="introScreen">
+        <p class="fortune-intro">
+          오늘의 작은 메시지가 도착했어요.<br>
+          지금의 나를 위한 한 문장을 열어보세요.
+        </p>
 
-    <div class="button-wrap">
-      <button onclick="showRandomMessage()">다른 문장 보기</button>
+        <div class="button-wrap">
+          <button onclick="openFortune()">포춘 열기</button>
+        </div>
+      </div>
+
+      <!-- 결과 화면 -->
+      <div class="screen hidden" id="resultScreen">
+        <div class="fortune-card">
+          <div class="fortune-label">오늘의 회복 타입</div>
+          <div class="fortune-type" id="fortuneType"></div>
+          <div class="fortune-message" id="fortuneMessage"></div>
+        </div>
+
+        <div class="button-wrap">
+          <button class="sub-button" onclick="showAnotherFortune()">다른 메시지 보기</button>
+        </div>
+      </div>
     </div>
 
     <div class="footer-line"></div>
@@ -289,43 +360,133 @@ body::after {
   </div>
 
   <script>
-    const messages = [
-      "오늘도 몸이 먼저인 하루를 보내요.",
-      "작은 불편 하나만 덜어도 하루가 달라져요.",
-      "지금의 하루가 조금 덜 복잡하길 바랍니다.",
-      "조금 더 가볍게 숨 쉬는 하루가 되길 바랍니다.",
-      "오늘도 충분히 잘하고 있어요.",
-      "조금 덜 무겁고,\n조금 더 편안한 하루가 되길 바랍니다.",
-      "다 하지 못해도 괜찮아요.",
-      "몸이 편해야 마음도 조금 덜 지쳐요.",
-      "오늘은 조금 덜 애써도 괜찮아요.",
-      "지금 이 순간에도 이미 충분해요.",
-      "참는 것보다 편안한 쪽을\n먼저 골라요.",
-      "내 몸의 신호를 먼저\n살펴봐 주세요.",
-      "작은 휴식 하나도 충분히\n의미 있어요.",
-      "천천히 가도 괜찮아요.",
-      "오늘의 나를 너무 몰아붙이지\n않기로 해요.",
-      "불편함을 참지 않아도 괜찮아요.",
-      "HAROO 브라가 오늘을\n조금 더 가볍게 만들어주길 바랍니다."
+    const fortunes = [
+      {
+        type: "작은 숨 타입",
+        message: "오늘은 조금 덜 애써도 괜찮아요."
+      },
+      {
+        type: "햇살 타입",
+        message: "작은 불편 하나만 덜어도 하루가 달라져요."
+      },
+      {
+        type: "느린 호흡 타입",
+        message: "천천히 가도 괜찮아요."
+      },
+      {
+        type: "가벼운 하루 타입",
+        message: "조금 더 가볍게 숨 쉬는 하루가 되길 바랍니다."
+      },
+      {
+        type: "따뜻한 휴식 타입",
+        message: "작은 휴식 하나도 충분히 의미 있어요."
+      },
+      {
+        type: "조용한 회복 타입",
+        message: "지금의 하루가 조금 덜 복잡하길 바랍니다."
+      },
+      {
+        type: "물 한 잔 타입",
+        message: "물 한 잔 챙기는 것도 충분한 돌봄이에요."
+      },
+      {
+        type: "덜 무거운 하루 타입",
+        message: "조금 덜 무겁고,\n조금 더 편안한 하루가 되길 바랍니다."
+      },
+      {
+        type: "천천히 괜찮은 타입",
+        message: "다 하지 못해도 괜찮아요."
+      },
+      {
+        type: "참지 않아도 되는 타입",
+        message: "불편함을 참지 않아도 괜찮아요."
+      },
+      {
+        type: "작은 쉼표 타입",
+        message: "오늘은 한 템포 쉬어가도 괜찮아요."
+      },
+      {
+        type: "몸 먼저 타입",
+        message: "오늘도 몸이 먼저인 하루를 보내요."
+      },
+      {
+        type: "오늘도 충분한 타입",
+        message: "오늘도 충분히 잘하고 있어요."
+      },
+      {
+        type: "느긋한 회복 타입",
+        message: "오늘의 나를 너무 몰아붙이지 않기로 해요."
+      },
+      {
+        type: "부드러운 숨 타입",
+        message: "조금 더 부드럽게 숨 쉬는 하루가 되길 바랍니다."
+      },
+      {
+        type: "가만한 위로 타입",
+        message: "지금 이 순간에도 이미 충분해요."
+      },
+      {
+        type: "한 템포 쉬어가기 타입",
+        message: "몸이 편해야 마음도 조금 덜 지쳐요."
+      },
+      {
+        type: "작은 편안함 타입",
+        message: "참는 것보다 편안한 쪽을 먼저 골라요."
+      },
+      {
+        type: "덜 애써도 되는 타입",
+        message: "오늘은 조금 덜 애써도 괜찮아요."
+      },
+      {
+        type: "온전한 오늘 타입",
+        message: "HAROO 브라가 오늘을\n조금 더 가볍게 만들어주길 바랍니다."
+      }
     ];
 
-    function showRandomMessage() {
-      const messageEl = document.getElementById("message");
-      messageEl.classList.add("fade-out");
+    function randomFortune() {
+      const index = Math.floor(Math.random() * fortunes.length);
+      return fortunes[index];
+    }
+
+    function openFortune() {
+      const intro = document.getElementById("introScreen");
+      const result = document.getElementById("resultScreen");
+
+      intro.classList.add("fade-out");
 
       setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * messages.length);
-        messageEl.innerHTML = messages[randomIndex].replace(/\n/g, "<br>");
-        messageEl.classList.remove("fade-out");
-        messageEl.classList.add("fade-in");
+        intro.classList.add("hidden");
+        intro.classList.remove("fade-out");
+
+        const today = randomFortune();
+        document.getElementById("fortuneType").textContent = today.type;
+        document.getElementById("fortuneMessage").innerHTML = today.message.replace(/\n/g, "<br>");
+
+        result.classList.remove("hidden");
+        result.classList.add("fade-in");
 
         setTimeout(() => {
-          messageEl.classList.remove("fade-in");
-        }, 500);
+          result.classList.remove("fade-in");
+        }, 450);
       }, 220);
     }
 
-    showRandomMessage();
+    function showAnotherFortune() {
+      const result = document.getElementById("resultScreen");
+      result.classList.add("fade-out");
+
+      setTimeout(() => {
+        const today = randomFortune();
+        document.getElementById("fortuneType").textContent = today.type;
+        document.getElementById("fortuneMessage").innerHTML = today.message.replace(/\n/g, "<br>");
+        result.classList.remove("fade-out");
+        result.classList.add("fade-in");
+
+        setTimeout(() => {
+          result.classList.remove("fade-in");
+        }, 450);
+      }, 220);
+    }
   </script>
 </body>
 </html>
