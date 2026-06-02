@@ -51,7 +51,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.12;
+      opacity: 0.10;
       background-image:
         repeating-linear-gradient(
           0deg,
@@ -67,15 +67,15 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.45;
+      opacity: 0.40;
       background:
         linear-gradient(
           120deg,
-          rgba(255,255,255,0.45) 0%,
+          rgba(255,255,255,0.42) 0%,
           rgba(255,255,255,0.02) 18%,
-          rgba(255,255,255,0.18) 36%,
-          rgba(255,255,255,0.03) 54%,
-          rgba(255,255,255,0.10) 72%,
+          rgba(255,255,255,0.14) 36%,
+          rgba(255,255,255,0.02) 54%,
+          rgba(255,255,255,0.08) 72%,
           rgba(255,255,255,0.00) 100%
         );
       transform: translateX(-4%);
@@ -91,7 +91,7 @@
       background:
         radial-gradient(ellipse at center,
           rgba(255,255,255,0.82) 0%,
-          rgba(255,255,255,0.22) 40%,
+          rgba(255,255,255,0.20) 40%,
           rgba(255,255,255,0.00) 76%);
       filter: blur(8px);
     }
@@ -154,7 +154,7 @@
     }
 
     .stage {
-      min-height: 385px;
+      min-height: 390px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -163,7 +163,7 @@
 
     .screen {
       width: 100%;
-      max-width: 390px;
+      max-width: 392px;
       margin: 0 auto;
       opacity: 1;
       transform: translateY(0);
@@ -337,14 +337,17 @@
       position: relative;
       overflow: hidden;
       border-radius: 28px;
-      min-height: 280px;
+      min-height: 282px;
       padding: 24px 22px 26px;
-      background: linear-gradient(180deg, rgba(252,248,244,0.96), rgba(249,244,238,0.95));
+      background: linear-gradient(180deg, rgba(252,248,244,0.97), rgba(249,244,238,0.96));
       border: 1px solid rgba(255,255,255,0.9);
       box-shadow:
         0 14px 28px rgba(90,67,53,0.05),
         inset 0 1px 0 rgba(255,255,255,0.78);
       isolation: isolate;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .fortune-visual {
@@ -361,11 +364,79 @@
       display: none;
     }
 
-    .fortune-label,
-    .fortune-type,
-    .fortune-message {
+    .fortune-card.theme-soft-breath .v1,
+    .fortune-card.theme-soft-breath .v2,
+    .fortune-card.theme-soft-breath .v3,
+    .fortune-card.theme-sunlight .v1,
+    .fortune-card.theme-sunlight .v2,
+    .fortune-card.theme-sunlight .v3,
+    .fortune-card.theme-slow-breath .v1,
+    .fortune-card.theme-slow-breath .v2,
+    .fortune-card.theme-slow-breath .v3,
+    .fortune-card.theme-light-day .v1,
+    .fortune-card.theme-light-day .v2,
+    .fortune-card.theme-light-day .v3,
+    .fortune-card.theme-warm-rest .v1,
+    .fortune-card.theme-warm-rest .v2,
+    .fortune-card.theme-warm-rest .v3,
+    .fortune-card.theme-quiet-recovery .v1,
+    .fortune-card.theme-quiet-recovery .v2,
+    .fortune-card.theme-quiet-recovery .v3,
+    .fortune-card.theme-water-glass .v1,
+    .fortune-card.theme-water-glass .v2,
+    .fortune-card.theme-water-glass .v3,
+    .fortune-card.theme-less-heavy .v1,
+    .fortune-card.theme-less-heavy .v2,
+    .fortune-card.theme-less-heavy .v3,
+    .fortune-card.theme-slowly-ok .v1,
+    .fortune-card.theme-slowly-ok .v2,
+    .fortune-card.theme-slowly-ok .v3,
+    .fortune-card.theme-no-endure .v1,
+    .fortune-card.theme-no-endure .v2,
+    .fortune-card.theme-no-endure .v3,
+    .fortune-card.theme-small-comma .v1,
+    .fortune-card.theme-small-comma .v2,
+    .fortune-card.theme-small-comma .v3,
+    .fortune-card.theme-body-first .v1,
+    .fortune-card.theme-body-first .v2,
+    .fortune-card.theme-body-first .v3,
+    .fortune-card.theme-enough-today .v1,
+    .fortune-card.theme-enough-today .v2,
+    .fortune-card.theme-enough-today .v3,
+    .fortune-card.theme-gentle-recovery .v1,
+    .fortune-card.theme-gentle-recovery .v2,
+    .fortune-card.theme-gentle-recovery .v3,
+    .fortune-card.theme-soft-air .v1,
+    .fortune-card.theme-soft-air .v2,
+    .fortune-card.theme-soft-air .v3,
+    .fortune-card.theme-still-comfort .v1,
+    .fortune-card.theme-still-comfort .v2,
+    .fortune-card.theme-still-comfort .v3,
+    .fortune-card.theme-one-tempo .v1,
+    .fortune-card.theme-one-tempo .v2,
+    .fortune-card.theme-one-tempo .v3,
+    .fortune-card.theme-small-comfort .v1,
+    .fortune-card.theme-small-comfort .v2,
+    .fortune-card.theme-small-comfort .v3,
+    .fortune-card.theme-less-effort .v1,
+    .fortune-card.theme-less-effort .v2,
+    .fortune-card.theme-less-effort .v3,
+    .fortune-card.theme-whole-today .v1,
+    .fortune-card.theme-whole-today .v2,
+    .fortune-card.theme-whole-today .v3 {
+      display: block;
+    }
+
+    .fortune-content {
       position: relative;
       z-index: 1;
+      width: 100%;
+      max-width: 310px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }
 
@@ -374,25 +445,28 @@
       letter-spacing: 0.06em;
       line-height: 1.7;
       color: var(--brown-light);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      text-align: center;
     }
 
     .fortune-type {
       margin: 0 0 18px;
       font-family: Georgia, "Times New Roman", serif;
       font-size: 28px;
-      line-height: 1.45;
+      line-height: 1.35;
       color: var(--brown);
       word-break: keep-all;
+      text-align: center;
     }
 
     .fortune-message {
       margin: 0;
       font-size: 20px;
-      line-height: 1.95;
+      line-height: 1.8;
       color: var(--brown);
       white-space: pre-line;
       word-break: keep-all;
+      text-align: center;
     }
 
     .result-buttons {
@@ -415,112 +489,52 @@
       word-break: keep-all;
     }
 
-    /* ===== visible theme objects ===== */
-
-    /* base */
-    .theme-soft-breath .v1,
-    .theme-soft-breath .v2,
-    .theme-soft-breath .v3,
-    .theme-sunlight .v1,
-    .theme-sunlight .v2,
-    .theme-sunlight .v3,
-    .theme-slow-breath .v1,
-    .theme-slow-breath .v2,
-    .theme-light-day .v1,
-    .theme-light-day .v2,
-    .theme-light-day .v3,
-    .theme-warm-rest .v1,
-    .theme-warm-rest .v2,
-    .theme-warm-rest .v3,
-    .theme-quiet-recovery .v1,
-    .theme-quiet-recovery .v2,
-    .theme-water-glass .v1,
-    .theme-water-glass .v2,
-    .theme-water-glass .v3,
-    .theme-less-heavy .v1,
-    .theme-less-heavy .v2,
-    .theme-less-heavy .v3,
-    .theme-slowly-ok .v1,
-    .theme-slowly-ok .v2,
-    .theme-slowly-ok .v3,
-    .theme-no-endure .v1,
-    .theme-no-endure .v2,
-    .theme-no-endure .v3,
-    .theme-small-comma .v1,
-    .theme-small-comma .v2,
-    .theme-small-comma .v3,
-    .theme-body-first .v1,
-    .theme-body-first .v2,
-    .theme-body-first .v3,
-    .theme-enough-today .v1,
-    .theme-enough-today .v2,
-    .theme-gentle-recovery .v1,
-    .theme-gentle-recovery .v2,
-    .theme-gentle-recovery .v3,
-    .theme-soft-air .v1,
-    .theme-soft-air .v2,
-    .theme-soft-air .v3,
-    .theme-still-comfort .v1,
-    .theme-still-comfort .v2,
-    .theme-one-tempo .v1,
-    .theme-one-tempo .v2,
-    .theme-one-tempo .v3,
-    .theme-small-comfort .v1,
-    .theme-small-comfort .v2,
-    .theme-small-comfort .v3,
-    .theme-less-effort .v1,
-    .theme-less-effort .v2,
-    .theme-less-effort .v3,
-    .theme-whole-today .v1,
-    .theme-whole-today .v2,
-    .theme-whole-today .v3 {
-      display: block;
-    }
+    /* ===== 20 organized themes ===== */
 
     /* 1 작은 숨 */
-    .theme-soft-breath .v1 {
-      width: 180px; height: 180px;
-      left: -20px; top: -10px;
+    .fortune-card.theme-soft-breath .v1 {
+      width: 210px; height: 210px;
+      left: -34px; top: -28px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(244,234,224,0.40) 56%, transparent 74%);
+      background: radial-gradient(circle, rgba(255,255,255,0.92) 0%, rgba(244,234,224,0.42) 56%, transparent 74%);
     }
-    .theme-soft-breath .v2 {
-      width: 62px; height: 62px;
-      right: 28px; top: 26px;
+    .fortune-card.theme-soft-breath .v2 {
+      width: 72px; height: 72px;
+      right: 26px; top: 28px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.70), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.72), transparent 72%);
     }
-    .theme-soft-breath .v3 {
-      width: 130px; height: 42px;
+    .fortune-card.theme-soft-breath .v3 {
+      width: 150px; height: 40px;
       left: 50%; bottom: 18px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.32), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.28), transparent 72%);
     }
 
     /* 2 햇살 */
-    .theme-sunlight .v1 {
+    .fortune-card.theme-sunlight .v1 {
       inset: 0;
       background:
         linear-gradient(125deg, rgba(243,216,171,0.42) 0%, rgba(243,216,171,0.18) 14%, rgba(255,255,255,0) 28%),
-        linear-gradient(125deg, rgba(255,240,220,0.26) 22%, rgba(255,255,255,0) 36%),
+        linear-gradient(125deg, rgba(255,240,220,0.28) 22%, rgba(255,255,255,0) 36%),
         linear-gradient(125deg, rgba(255,232,199,0.22) 40%, rgba(255,255,255,0) 54%);
     }
-    .theme-sunlight .v2 {
+    .fortune-card.theme-sunlight .v2 {
       width: 28px; height: 28px;
-      right: 30px; top: 24px;
+      right: 28px; top: 24px;
       border-radius: 50%;
-      background: rgba(251,239,214,0.78);
-      box-shadow: 0 0 0 10px rgba(251,239,214,0.24);
+      background: rgba(251,239,214,0.82);
+      box-shadow: 0 0 0 10px rgba(251,239,214,0.22);
     }
-    .theme-sunlight .v3 {
-      width: 180px; height: 70px;
-      left: -30px; top: -20px;
-      background: radial-gradient(ellipse at center, rgba(248,229,191,0.42), transparent 72%);
+    .fortune-card.theme-sunlight .v3 {
+      width: 170px; height: 70px;
+      left: -24px; top: -12px;
       border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(248,229,191,0.42), transparent 72%);
     }
 
     /* 3 느린 호흡 */
-    .theme-slow-breath .v1 {
+    .fortune-card.theme-slow-breath .v1 {
       inset: 0;
       background:
         linear-gradient(160deg,
@@ -531,353 +545,362 @@
           rgba(255,255,255,0.00) 40%,
           rgba(255,255,255,0.12) 50%,
           rgba(255,255,255,0.00) 60%);
-      opacity: 0.7;
+      opacity: 0.72;
     }
-    .theme-slow-breath .v2 {
-      width: 160px; height: 80px;
-      right: -10px; bottom: 0;
+    .fortune-card.theme-slow-breath .v2 {
+      width: 190px; height: 90px;
+      right: -18px; bottom: 0;
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.34), transparent 74%);
     }
+    .fortune-card.theme-slow-breath .v3 {
+      width: 110px; height: 110px;
+      left: -20px; top: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 72%);
+    }
 
     /* 4 가벼운 하루 */
-    .theme-light-day .v1 {
-      width: 220px; height: 100px;
-      left: 50%; top: -24px; transform: translateX(-50%);
+    .fortune-card.theme-light-day .v1 {
+      width: 230px; height: 100px;
+      left: 50%; top: -22px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.82), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.84), transparent 72%);
     }
-    .theme-light-day .v2 {
-      width: 74px; height: 74px;
-      right: 26px; top: 24px;
+    .fortune-card.theme-light-day .v2 {
+      width: 84px; height: 84px;
+      right: 24px; top: 24px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.54), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.56), transparent 72%);
     }
-    .theme-light-day .v3 {
-      width: 150px; height: 28px;
-      left: 50%; bottom: 22px; transform: translateX(-50%);
+    .fortune-card.theme-light-day .v3 {
+      width: 150px; height: 30px;
+      left: 50%; bottom: 18px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.24), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.22), transparent 72%);
     }
 
     /* 5 따뜻한 휴식 */
-    .theme-warm-rest .v1 {
-      width: 260px; height: 110px;
-      left: -18px; bottom: -10px;
+    .fortune-card.theme-warm-rest .v1 {
+      width: 280px; height: 120px;
+      left: -24px; bottom: -10px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(238,220,199,0.52), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(238,220,199,0.54), transparent 72%);
     }
-    .theme-warm-rest .v2 {
-      width: 260px; height: 110px;
-      right: -24px; bottom: -10px;
+    .fortune-card.theme-warm-rest .v2 {
+      width: 280px; height: 120px;
+      right: -30px; bottom: -12px;
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.34), transparent 72%);
     }
-    .theme-warm-rest .v3 {
-      width: 110%; height: 74px;
-      left: -5%; bottom: -20px;
+    .fortune-card.theme-warm-rest .v3 {
+      width: 110%; height: 76px;
+      left: -5%; bottom: -18px;
       background:
-        radial-gradient(ellipse at 12% 0%, rgba(255,255,255,0.38) 0 34%, transparent 35%),
-        radial-gradient(ellipse at 38% 0%, rgba(255,245,235,0.34) 0 36%, transparent 37%),
-        radial-gradient(ellipse at 65% 0%, rgba(255,255,255,0.28) 0 35%, transparent 36%),
-        radial-gradient(ellipse at 88% 0%, rgba(255,245,235,0.24) 0 32%, transparent 33%);
+        radial-gradient(ellipse at 12% 0%, rgba(255,255,255,0.40) 0 34%, transparent 35%),
+        radial-gradient(ellipse at 38% 0%, rgba(255,245,235,0.36) 0 36%, transparent 37%),
+        radial-gradient(ellipse at 65% 0%, rgba(255,255,255,0.30) 0 35%, transparent 36%),
+        radial-gradient(ellipse at 88% 0%, rgba(255,245,235,0.26) 0 32%, transparent 33%);
     }
 
     /* 6 조용한 회복 */
-    .theme-quiet-recovery .v1 {
-      width: 220px; height: 220px;
-      left: 50%; top: 24px; transform: translateX(-50%);
+    .fortune-card.theme-quiet-recovery .v1 {
+      width: 230px; height: 230px;
+      left: 50%; top: 18px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.42), rgba(255,255,255,0.00) 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.44), rgba(255,255,255,0.00) 72%);
     }
-    .theme-quiet-recovery .v2 {
-      width: 120px; height: 34px;
-      left: 50%; bottom: 20px; transform: translateX(-50%);
+    .fortune-card.theme-quiet-recovery .v2 {
+      width: 130px; height: 32px;
+      left: 50%; bottom: 18px; transform: translateX(-50%);
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.20), transparent 72%);
     }
+    .fortune-card.theme-quiet-recovery .v3 { display: none; }
 
     /* 7 물 한 잔 */
-    .theme-water-glass .v1 {
-      width: 74px; height: 74px;
-      left: 50%; bottom: 30px; transform: translateX(-50%);
+    .fortune-card.theme-water-glass .v1 {
+      width: 72px; height: 72px;
+      left: 50%; bottom: 28px; transform: translateX(-50%);
       border-radius: 50%;
-      border: 3px solid rgba(206,228,226,0.78);
+      border: 3px solid rgba(206,228,226,0.82);
       background: transparent;
     }
-    .theme-water-glass .v2 {
-      width: 114px; height: 114px;
-      left: 50%; bottom: 10px; transform: translateX(-50%);
+    .fortune-card.theme-water-glass .v2 {
+      width: 112px; height: 112px;
+      left: 50%; bottom: 8px; transform: translateX(-50%);
       border-radius: 50%;
-      border: 2px solid rgba(206,228,226,0.54);
+      border: 2px solid rgba(206,228,226,0.58);
       background: transparent;
     }
-    .theme-water-glass .v3 {
-      width: 154px; height: 154px;
-      left: 50%; bottom: -12px; transform: translateX(-50%);
+    .fortune-card.theme-water-glass .v3 {
+      width: 152px; height: 152px;
+      left: 50%; bottom: -14px; transform: translateX(-50%);
       border-radius: 50%;
-      border: 2px solid rgba(206,228,226,0.34);
+      border: 2px solid rgba(206,228,226,0.36);
       background: transparent;
     }
 
     /* 8 덜 무거운 하루 */
-    .theme-less-heavy .v1 {
-      width: 200px; height: 100px;
-      left: -24px; bottom: -12px;
+    .fortune-card.theme-less-heavy .v1 {
+      width: 210px; height: 100px;
+      left: -24px; bottom: -10px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(240,223,206,0.54), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(240,223,206,0.56), transparent 72%);
     }
-    .theme-less-heavy .v2 {
-      width: 200px; height: 100px;
-      right: -24px; bottom: -12px;
+    .fortune-card.theme-less-heavy .v2 {
+      width: 210px; height: 100px;
+      right: -24px; bottom: -10px;
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.34), transparent 72%);
     }
-    .theme-less-heavy .v3 {
-      width: 150px; height: 28px;
-      left: 50%; bottom: 30px; transform: translateX(-50%);
+    .fortune-card.theme-less-heavy .v3 {
+      width: 160px; height: 28px;
+      left: 50%; bottom: 26px; transform: translateX(-50%);
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.20), transparent 72%);
     }
 
     /* 9 천천히 괜찮은 */
-    .theme-slowly-ok .v1 {
+    .fortune-card.theme-slowly-ok .v1 {
       inset: 0;
       background: linear-gradient(110deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 42%);
     }
-    .theme-slowly-ok .v2 {
-      width: 140px; height: 140px;
-      left: -16px; top: 44px;
+    .fortune-card.theme-slowly-ok .v2 {
+      width: 150px; height: 150px;
+      left: -18px; top: 40px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.22), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.20), transparent 72%);
     }
-    .theme-slowly-ok .v3 {
-      width: 84px; height: 84px;
-      right: 22px; bottom: 24px;
+    .fortune-card.theme-slowly-ok .v3 {
+      width: 90px; height: 90px;
+      right: 22px; bottom: 18px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 72%);
     }
 
     /* 10 참지 않아도 되는 */
-    .theme-no-endure .v1 {
-      width: 140px; height: 140px;
-      left: 50%; top: 58px; transform: translateX(-50%);
+    .fortune-card.theme-no-endure .v1 {
+      width: 142px; height: 142px;
+      left: 50%; top: 56px; transform: translateX(-50%);
       border-radius: 50%;
-      border: 3px solid rgba(240,222,206,0.68);
+      border: 3px solid rgba(240,222,206,0.70);
       background: transparent;
     }
-    .theme-no-endure .v2 {
-      width: 190px; height: 190px;
-      left: 50%; top: 34px; transform: translateX(-50%);
+    .fortune-card.theme-no-endure .v2 {
+      width: 192px; height: 192px;
+      left: 50%; top: 30px; transform: translateX(-50%);
       border-radius: 50%;
       border: 2px solid rgba(255,255,255,0.34);
       background: transparent;
     }
-    .theme-no-endure .v3 {
-      width: 240px; height: 240px;
-      left: 50%; top: 10px; transform: translateX(-50%);
+    .fortune-card.theme-no-endure .v3 {
+      width: 242px; height: 242px;
+      left: 50%; top: 6px; transform: translateX(-50%);
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.24);
       background: transparent;
     }
 
     /* 11 작은 쉼표 */
-    .theme-small-comma .v1 {
+    .fortune-card.theme-small-comma .v1 {
       width: 34px; height: 44px;
-      right: 46px; top: 26px;
+      right: 42px; top: 24px;
       border-radius: 50%;
-      background: rgba(239,219,196,0.78);
+      background: rgba(239,219,196,0.80);
       transform: rotate(18deg);
-      box-shadow: 0 18px 0 -10px rgba(239,219,196,0.68);
+      box-shadow: 0 18px 0 -10px rgba(239,219,196,0.70);
     }
-    .theme-small-comma .v2 {
+    .fortune-card.theme-small-comma .v2 {
       width: 110px; height: 110px;
-      right: -10px; top: -10px;
+      right: -12px; top: -10px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,248,236,0.58), transparent 72%);
+      background: radial-gradient(circle, rgba(255,248,236,0.60), transparent 72%);
     }
-    .theme-small-comma .v3 {
-      width: 110px; height: 24px;
-      left: 24px; bottom: 20px;
+    .fortune-card.theme-small-comma .v3 {
+      width: 120px; height: 22px;
+      left: 22px; bottom: 18px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.20), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.18), transparent 72%);
     }
 
     /* 12 몸 먼저 */
-    .theme-body-first .v1 {
+    .fortune-card.theme-body-first .v1 {
       width: 240px; height: 100px;
-      left: 50%; top: -30px; transform: translateX(-50%);
+      left: 50%; top: -24px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.86), rgba(255,255,255,0.00) 72%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.88), rgba(255,255,255,0.00) 72%);
     }
-    .theme-body-first .v2 {
+    .fortune-card.theme-body-first .v2 {
       width: 140px; height: 140px;
-      left: -34px; bottom: -34px;
+      left: -30px; bottom: -30px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.20), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 72%);
     }
-    .theme-body-first .v3 {
+    .fortune-card.theme-body-first .v3 {
       width: 140px; height: 140px;
-      right: -34px; bottom: -34px;
+      right: -30px; bottom: -30px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.20), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 72%);
     }
 
     /* 13 오늘도 충분한 */
-    .theme-enough-today .v1 {
-      width: 20px; height: 20px;
-      left: 24px; top: 22px;
+    .fortune-card.theme-enough-today .v1 {
+      width: 22px; height: 22px;
+      left: 22px; top: 20px;
       border-radius: 50%;
-      background: rgba(243,224,196,0.82);
+      background: rgba(243,224,196,0.84);
       box-shadow:
-        300px 6px 0 rgba(243,224,196,0.74),
-        26px 176px 0 rgba(243,224,196,0.56),
-        288px 166px 0 rgba(243,224,196,0.46);
+        296px 8px 0 rgba(243,224,196,0.76),
+        28px 172px 0 rgba(243,224,196,0.58),
+        284px 162px 0 rgba(243,224,196,0.48);
     }
-    .theme-enough-today .v2 {
-      width: 180px; height: 180px;
-      left: 50%; top: 34px; transform: translateX(-50%);
+    .fortune-card.theme-enough-today .v2 {
+      width: 190px; height: 190px;
+      left: 50%; top: 30px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.30), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.28), transparent 72%);
     }
+    .fortune-card.theme-enough-today .v3 { display: none; }
 
     /* 14 느긋한 회복 */
-    .theme-gentle-recovery .v1 {
+    .fortune-card.theme-gentle-recovery .v1 {
       inset: 0;
       background: linear-gradient(150deg, rgba(255,255,255,0.12), rgba(255,255,255,0.00) 38%);
     }
-    .theme-gentle-recovery .v2 {
-      width: 110%; height: 70px;
-      left: -5%; bottom: -16px;
+    .fortune-card.theme-gentle-recovery .v2 {
+      width: 110%; height: 72px;
+      left: -5%; bottom: -14px;
       background:
         radial-gradient(ellipse at 18% 0%, rgba(255,255,255,0.34) 0 36%, transparent 37%),
         radial-gradient(ellipse at 50% 0%, rgba(255,245,235,0.30) 0 38%, transparent 39%),
         radial-gradient(ellipse at 82% 0%, rgba(255,255,255,0.24) 0 34%, transparent 35%);
     }
-    .theme-gentle-recovery .v3 {
-      width: 160px; height: 34px;
-      left: 50%; bottom: 34px; transform: translateX(-50%);
+    .fortune-card.theme-gentle-recovery .v3 {
+      width: 170px; height: 30px;
+      left: 50%; bottom: 28px; transform: translateX(-50%);
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.16), transparent 72%);
     }
 
     /* 15 부드러운 숨 */
-    .theme-soft-air .v1 {
-      width: 200px; height: 88px;
-      left: 50%; top: 6px; transform: translateX(-50%);
+    .fortune-card.theme-soft-air .v1 {
+      width: 210px; height: 86px;
+      left: 50%; top: 4px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.74), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.76), transparent 72%);
     }
-    .theme-soft-air .v2 {
+    .fortune-card.theme-soft-air .v2 {
       width: 16px; height: 16px;
-      right: 40px; bottom: 34px;
+      right: 38px; bottom: 32px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.54);
-      box-shadow: -24px -8px 0 rgba(255,255,255,0.34);
+      background: rgba(255,255,255,0.56);
+      box-shadow: -24px -8px 0 rgba(255,255,255,0.36);
     }
-    .theme-soft-air .v3 {
-      width: 120px; height: 24px;
-      left: 26px; bottom: 20px;
+    .fortune-card.theme-soft-air .v3 {
+      width: 120px; height: 22px;
+      left: 24px; bottom: 18px;
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.18), transparent 72%);
     }
 
     /* 16 가만한 위로 */
-    .theme-still-comfort .v1 {
+    .fortune-card.theme-still-comfort .v1 {
       width: 6px; height: 6px;
-      left: 24px; top: 22px;
+      left: 22px; top: 20px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.66);
+      background: rgba(255,255,255,0.68);
       box-shadow:
-        300px 14px 0 rgba(255,255,255,0.52),
-        20px 178px 0 rgba(255,255,255,0.40),
-        292px 166px 0 rgba(255,255,255,0.36);
+        296px 14px 0 rgba(255,255,255,0.54),
+        22px 172px 0 rgba(255,255,255,0.40),
+        286px 162px 0 rgba(255,255,255,0.36);
     }
-    .theme-still-comfort .v2 {
-      width: 160px; height: 160px;
-      left: 50%; top: 52px; transform: translateX(-50%);
+    .fortune-card.theme-still-comfort .v2 {
+      width: 170px; height: 170px;
+      left: 50%; top: 46px; transform: translateX(-50%);
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 72%);
     }
+    .fortune-card.theme-still-comfort .v3 { display:none; }
 
     /* 17 한 템포 쉬어가기 */
-    .theme-one-tempo .v1 {
-      width: 240px; height: 100px;
-      left: 50%; bottom: -8px; transform: translateX(-50%);
+    .fortune-card.theme-one-tempo .v1 {
+      width: 250px; height: 100px;
+      left: 50%; bottom: -6px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(239,223,207,0.52), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(239,223,207,0.54), transparent 72%);
     }
-    .theme-one-tempo .v2 {
-      width: 130px; height: 32px;
-      left: 50%; bottom: 34px; transform: translateX(-50%);
+    .fortune-card.theme-one-tempo .v2 {
+      width: 134px; height: 30px;
+      left: 50%; bottom: 30px; transform: translateX(-50%);
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.22), transparent 72%);
     }
-    .theme-one-tempo .v3 {
-      width: 64px; height: 64px;
-      left: 28px; top: 28px;
+    .fortune-card.theme-one-tempo .v3 {
+      width: 62px; height: 62px;
+      left: 26px; top: 26px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.20), transparent 72%);
     }
 
     /* 18 작은 편안함 */
-    .theme-small-comfort .v1 {
+    .fortune-card.theme-small-comfort .v1 {
       inset: 0;
       background: linear-gradient(140deg, rgba(255,255,255,0.12), rgba(255,255,255,0.00) 36%);
     }
-    .theme-small-comfort .v2 {
-      width: 110px; height: 110px;
-      right: -12px; top: -8px;
+    .fortune-card.theme-small-comfort .v2 {
+      width: 112px; height: 112px;
+      right: -10px; top: -6px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.60), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.62), transparent 72%);
     }
-    .theme-small-comfort .v3 {
-      width: 120px; height: 22px;
-      right: 20px; bottom: 22px;
+    .fortune-card.theme-small-comfort .v3 {
+      width: 124px; height: 20px;
+      right: 16px; bottom: 18px;
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.16), transparent 72%);
     }
 
     /* 19 덜 애써도 되는 */
-    .theme-less-effort .v1 {
-      width: 280px; height: 140px;
-      left: 50%; top: 48px; transform: translateX(-50%);
+    .fortune-card.theme-less-effort .v1 {
+      width: 290px; height: 140px;
+      left: 50%; top: 42px; transform: translateX(-50%);
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,0.34), rgba(255,255,255,0.00) 72%);
     }
-    .theme-less-effort .v2 {
-      width: 90px; height: 90px;
-      left: 10px; bottom: -10px;
+    .fortune-card.theme-less-effort .v2 {
+      width: 96px; height: 96px;
+      left: 8px; bottom: -8px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 72%);
     }
-    .theme-less-effort .v3 {
-      width: 90px; height: 90px;
-      right: 10px; bottom: -10px;
+    .fortune-card.theme-less-effort .v3 {
+      width: 96px; height: 96px;
+      right: 8px; bottom: -8px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 72%);
     }
 
     /* 20 온전한 오늘 */
-    .theme-whole-today .v1 {
-      width: 240px; height: 100px;
-      left: 50%; top: -24px; transform: translateX(-50%);
+    .fortune-card.theme-whole-today .v1 {
+      width: 250px; height: 100px;
+      left: 50%; top: -20px; transform: translateX(-50%);
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(244,228,208,0.46), transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(244,228,208,0.48), transparent 72%);
     }
-    .theme-whole-today .v2 {
+    .fortune-card.theme-whole-today .v2 {
       width: 110%; height: 74px;
-      left: -5%; bottom: -18px;
+      left: -5%; bottom: -14px;
       background:
         radial-gradient(ellipse at 18% 0%, rgba(255,255,255,0.30) 0 34%, transparent 35%),
         radial-gradient(ellipse at 50% 0%, rgba(255,245,235,0.24) 0 38%, transparent 39%),
         radial-gradient(ellipse at 82% 0%, rgba(255,255,255,0.20) 0 34%, transparent 35%);
     }
-    .theme-whole-today .v3 {
-      width: 74px; height: 74px;
-      right: 24px; top: 24px;
+    .fortune-card.theme-whole-today .v3 {
+      width: 72px; height: 72px;
+      right: 24px; top: 22px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.30), transparent 72%);
+      background: radial-gradient(circle, rgba(255,255,255,0.32), transparent 72%);
     }
 
     @media (max-width: 480px) {
@@ -920,6 +943,11 @@
         padding: 22px 18px 24px;
       }
 
+      .fortune-content {
+        max-width: 300px;
+        min-height: 168px;
+      }
+
       .fortune-label {
         font-size: 12px;
         margin-bottom: 12px;
@@ -932,7 +960,7 @@
 
       .fortune-message {
         font-size: 18px;
-        line-height: 1.9;
+        line-height: 1.85;
       }
 
       .ghost-btn {
@@ -981,9 +1009,11 @@
               <span class="v2"></span>
               <span class="v3"></span>
             </div>
-            <div class="fortune-label">오늘의 회복</div>
-            <h2 class="fortune-type" id="fortuneType"></h2>
-            <p class="fortune-message" id="fortuneMessage"></p>
+            <div class="fortune-content">
+              <div class="fortune-label">오늘의 회복</div>
+              <h2 class="fortune-type" id="fortuneType"></h2>
+              <p class="fortune-message" id="fortuneMessage"></p>
+            </div>
           </div>
 
           <div class="result-buttons">
